@@ -21,7 +21,7 @@ abstract class BaseViewModel<STATE, EVENT>(
 
     private val eventFlow = MutableSharedFlow<EVENT>(onBufferOverflow = BufferOverflow.DROP_OLDEST, extraBufferCapacity = EXTRA_BUFFER_CAPACITY)
 
-    @FlowPreview
+    @OptIn(FlowPreview::class)
     val state: StateFlow<STATE> = eventFlow.flatMapConcat {
         mapEventToState(it)
     }.stateIn(viewModelScope, SharingStarted.Eagerly, initialState)

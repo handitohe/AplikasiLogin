@@ -32,7 +32,6 @@ class ListViewModel @Inject constructor(
             .catch { emit(ListState.LoadFailed(emptyList(), it.message ?: "Unknown Error")) }
     }
 
-    @FlowPreview
     override suspend fun mapEventToState(event: ListEvent): Flow<ListState> {
         val prevList = state.value.list
         return when (event) {

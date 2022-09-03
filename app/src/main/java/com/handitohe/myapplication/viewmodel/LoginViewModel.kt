@@ -29,7 +29,7 @@ sealed class LoginEvent {
 class LoginViewModel @Inject constructor(private val repository: BebasBayarRepository) : BaseViewModel<LoginState, LoginEvent>(
     initialState = LoginState.Filling(Credential("", ""))
 ) {
-    @FlowPreview
+
     override suspend fun mapEventToState(event: LoginEvent): Flow<LoginState> {
         val prevState = state.value
         return when (event) {
